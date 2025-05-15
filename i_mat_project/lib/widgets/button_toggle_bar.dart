@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ButtonToggleBar extends StatefulWidget {
+  const ButtonToggleBar({super.key});
+
   @override
   _ButtonToggleBarState createState() => _ButtonToggleBarState();
 }
