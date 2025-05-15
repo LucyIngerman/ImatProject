@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_mat_project/widgets/button_toggle_bar.dart';
 import 'package:i_mat_project/widgets/top_navigation_bar.dart';
 
 
@@ -16,6 +17,7 @@ Widget build(BuildContext context) {
           logoAssetPath: 'assets/logo.jpg',
           cartTotal: 123.45,
         ),
+        ButtonToggleBar(),
         // The rest of your page
       ],
     ),

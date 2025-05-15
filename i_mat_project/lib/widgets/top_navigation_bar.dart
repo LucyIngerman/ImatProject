@@ -25,24 +25,23 @@ class TopNavigationBar extends StatelessWidget {
   static final Color hoverColor = Colors.grey[350]!;
   static const Color foregroundColor = Colors.black87;
 
-  ButtonStyle _buttonStyle(BorderRadius borderRadius) {
+  ButtonStyle _buttonStyle() {
     return ButtonStyle(
-      backgroundColor: WidgetStateProperty.resolveWith((states) {
+      minimumSize: WidgetStateProperty.all(const Size(40, 40)),
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (states.contains(WidgetState.hovered)) return hoverColor;
         return baseColor;
       }),
       foregroundColor: WidgetStateProperty.all(foregroundColor),
+      // ignore: deprecated_member_use
       overlayColor: WidgetStateProperty.all(Colors.grey.withOpacity(0.2)),
       shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: borderRadius),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       ),
-      padding: WidgetStateProperty.all(
-        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      ),
-      mouseCursor: WidgetStateProperty.resolveWith((states) {
-        return states.contains(WidgetState.disabled)
-            ? SystemMouseCursors.basic
-            : SystemMouseCursors.click;
+      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 12)),
+      mouseCursor: WidgetStateProperty.resolveWith<MouseCursor>((states) {
+        if (states.contains(WidgetState.disabled)) return SystemMouseCursors.basic;
+        return SystemMouseCursors.click;
       }),
       elevation: WidgetStateProperty.all(0),
     );
@@ -73,7 +72,7 @@ class TopNavigationBar extends StatelessWidget {
 
             const SizedBox(width: 16),
 
-            // Search Bar
+            // Search Bar fills remaining space
             Expanded(
               child: Container(
                 height: 40,
@@ -100,9 +99,10 @@ class TopNavigationBar extends StatelessWidget {
 
             // Cart Button
             TextButton(
-              style: _buttonStyle(BorderRadius.circular(20)),
+              style: _buttonStyle(),
               onPressed: onCartTap ?? () {},
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(Icons.shopping_cart),
                   const SizedBox(width: 6),
@@ -115,9 +115,10 @@ class TopNavigationBar extends StatelessWidget {
 
             // Login/Profile Button
             TextButton(
-              style: _buttonStyle(BorderRadius.circular(20)),
+              style: _buttonStyle(),
               onPressed: onLoginTap ?? () {},
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   isLoggedIn && profileImageUrl != null
                       ? CircleAvatar(
