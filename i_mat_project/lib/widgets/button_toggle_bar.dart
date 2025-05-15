@@ -4,6 +4,7 @@ class ButtonToggleBar extends StatefulWidget {
   const ButtonToggleBar({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ButtonToggleBarState createState() => _ButtonToggleBarState();
 }
 

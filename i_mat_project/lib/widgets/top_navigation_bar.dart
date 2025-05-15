@@ -11,7 +11,7 @@ class TopNavigationBar extends StatelessWidget {
   final VoidCallback? onLoginTap;
 
   const TopNavigationBar({
-    Key? key,
+    super.key,
     required this.logoAssetPath,
     required this.cartTotal,
     this.isLoggedIn = false,
@@ -19,7 +19,7 @@ class TopNavigationBar extends StatelessWidget {
     this.onLogoTap,
     this.onCartTap,
     this.onLoginTap,
-  }) : super(key: key);
+  });
 
   static final Color baseColor = Colors.grey[200]!;
   static final Color hoverColor = Colors.grey[350]!;

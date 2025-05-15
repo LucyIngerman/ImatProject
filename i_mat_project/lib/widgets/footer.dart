@@ -71,11 +71,6 @@ class Footer extends StatelessWidget {
       children: [
         _socialIcon(Icons.facebook, 'https://www.facebook.com/imat.online'),
         const SizedBox(width: 16),
-        _socialIcon(Icons.twitter, 'https://twitter.com/yourpage'),
-        const SizedBox(width: 16),
-        _socialIcon(Icons.linkedin, 'https://linkedin.com/yourpage'),
-        const SizedBox(width: 16),
-        _socialIcon(Icons.instagram, 'https://instagram.com/yourpage'),
       ],
     );
   }
