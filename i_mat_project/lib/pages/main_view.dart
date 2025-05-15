@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_mat_project/widgets/top_bar.dart';
+import 'package:i_mat_project/widgets/top_navigation_bar.dart';
 
 
 
@@ -12,7 +12,7 @@ class MainView extends StatelessWidget {
       return const Scaffold(
       body: Column(
         children: [
-          TopBar()
+          TopNavigationBar()
         ],
       ),
     );

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 
 
-class TopBar extends StatelessWidget {
-  const TopBar({super.key});
+class TopNavigationBar extends StatelessWidget {
+  const TopNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
