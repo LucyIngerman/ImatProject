@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:i_mat_project/providers/cart_provider.dart';
+import 'package:provider/provider.dart';
 import 'auto_fade_overflow_text.dart';
 
 class ProductCard extends StatefulWidget {
@@ -82,7 +84,9 @@ class _ProductCardState extends State<ProductCard> {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: InkWell(
-                        onTap: onAddToCart,
+                        onTap: () {
+                          Provider.of<CartProvider>(context, listen: false).addToCart(widget.product);
+                        },
                         borderRadius: BorderRadius.circular(20),
                         child: CircleAvatar(
                           backgroundColor: Colors.red,
