@@ -1,68 +1,40 @@
 import 'package:flutter/material.dart';
-import 'product_card.dart';
+import 'product_card.dart'; // Your custom card
 
 class ProductGrid extends StatelessWidget {
-  final List<Map<String, dynamic>> products = [
-    {
-      'name': 'Gurka Svensk Klass1',
-      'country': 'Sverige',
-      'weight': '270 g',
-      'price': '18,95 kr',
-      'pricePerKg': '70,19 kr/kg',
-      'imageUrl': 'https://img.icons8.com/plasticine/100/cucumber.png'
-    },
-    {
-      'name': 'Paprika Röd Klass1',
-      'country': 'Nederländerna',
-      'weight': '210 g',
-      'price': '11,95 kr',
-      'pricePerKg': '56,90 kr/kg',
-      'imageUrl': 'https://img.icons8.com/plasticine/100/red-pepper.png'
-    },
-    {
-      'name': 'Broccoli Klass1',
-      'country': 'Nederländerna',
-      'weight': '250 g',
-      'price': '14,95 kr',
-      'pricePerKg': '59,80 kr/kg',
-      'imageUrl': 'https://img.icons8.com/plasticine/100/broccoli.png'
-    },
-    {
-      'name': 'Sparris Grön Klass1',
-      'country': '',
-      'weight': '250 g',
-      'price': '47,95 kr',
-      'pricePerKg': '191,80 kr/kg',
-      'imageUrl': 'https://img.icons8.com/plasticine/100/asparagus.png'
-    },
-    {
-      'name': 'Ärtor Sugarsnap Klass1',
-      'country': '',
-      'weight': '150 g',
-      'price': '39,95 kr',
-      'pricePerKg': '266,33 kr/kg',
-      'imageUrl': 'https://img.icons8.com/plasticine/100/peas.png'
-    },
-    {
-      'name': 'Morötter Klass1',
-      'country': 'Sverige',
-      'weight': '2 kg',
-      'price': '34,95 kr',
-      'pricePerKg': '17,48 kr/kg',
-      'imageUrl': 'https://img.icons8.com/plasticine/100/carrot.png'
-    },
-  ];
+  final List<Map<String, dynamic>> products;
+  final int cardsPerRow;
 
-  ProductGrid({super.key});
+  const ProductGrid({
+    required this.products,
+    this.cardsPerRow = 2, // Change this to control layout
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 280, // fixed height to allow scrolling
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        children: products.map((product) => ProductCard(product)).toList(),
+    final double spacing = 10;
+
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: GridView.builder(
+        itemCount: products.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: cardsPerRow,
+          crossAxisSpacing: spacing,
+          mainAxisSpacing: spacing,
+          childAspectRatio: 0.53, // Adjust to suit your card height/width
+        ),
+        itemBuilder: (context, index) {
+          return ProductCard(
+  products[index],
+  onAddToCart: () {
+    cart.add(products[index]); // Replace with your cart logic
+    print('Added ${products[index]['name']} to cart');
+  },
+)
+;
+        },
       ),
     );
   }

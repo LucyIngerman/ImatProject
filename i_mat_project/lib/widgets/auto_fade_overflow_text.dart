@@ -4,7 +4,7 @@ class AutoFadeOverflowText extends StatefulWidget {
   final String text;
   final TextStyle? style;
 
-  const AutoFadeOverflowText({required this.text, this.style, Key? key}) : super(key: key);
+  const AutoFadeOverflowText({required this.text, this.style, super.key});
 
   @override
   _AutoFadeOverflowTextState createState() => _AutoFadeOverflowTextState();
