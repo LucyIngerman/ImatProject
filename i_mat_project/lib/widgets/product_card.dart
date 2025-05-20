@@ -9,14 +9,14 @@ class ProductCard extends StatefulWidget {
 
   const ProductCard(this.product, {required this.onAddToCart, super.key});
 
-
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
 
 class _ProductCardState extends State<ProductCard> {
   bool _isHovered = false;
-  bool _isButtonHovered = false; // Add this
+  bool _isButtonHovered = false;
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -32,88 +32,82 @@ class _ProductCardState extends State<ProductCard> {
           margin: EdgeInsets.symmetric(horizontal: 10),
           elevation: _isHovered ? 8 : 4,
           child: Container(
-            width: 160,
-            height: 300,
+            width: 160, // Fixed width
+            height: 300, // Fixed height
             padding: EdgeInsets.all(10),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final imageHeight = constraints.maxHeight * 0.5;
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.network(
-                        widget.product['imageUrl'],
-                        fit: BoxFit.contain,
-                        height: imageHeight,
-                        width: double.infinity,
-                        errorBuilder: (context, error, stackTrace) => Icon(
-                          Icons.broken_image,
-                          size: imageHeight * 0.6,
-                          color: Colors.grey[400],
-                        ),
-                      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.network(
+                    widget.product['imageUrl'],
+                    fit: BoxFit.contain,
+                    height: 150, // Fixed height for the image
+                    width: double.infinity,
+                    errorBuilder: (context, error, stackTrace) => Icon(
+                      Icons.broken_image,
+                      size: 90, // Fixed size for the error icon
+                      color: Colors.grey[400],
                     ),
-                    SizedBox(height: 10),
-                    AutoFadeOverflowText(
-                      text: widget.product['name'],
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    if (widget.product['country'] != '')
-                      Text(
-                        '${widget.product['country']}, ${widget.product['weight']}',
-                        style: TextStyle(fontSize: 12, color: Colors.black54),
-                      )
-                    else
-                      Text(
-                        widget.product['weight'],
-                        style: TextStyle(fontSize: 12, color: Colors.black54),
-                      ),
-                    SizedBox(height: 4),
-                    Text(
-                      widget.product['price'],
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      widget.product['pricePerKg'],
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Spacer(),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: MouseRegion(
-                        onEnter: (_) => setState(() => _isButtonHovered = true),
-                        onExit: (_) => setState(() => _isButtonHovered = false),
-                        child: Material(
-                          color: Colors.transparent,
-                          shape: CircleBorder(),
-                          child: InkWell(
-                            onTap: () {
-                              Provider.of<CartProvider>(context, listen: false).addToCart(widget.product);
-                            },
-                            borderRadius: BorderRadius.circular(100),
-                            child: AnimatedContainer(
-                              duration: Duration(milliseconds: 200),
-                              decoration: BoxDecoration(
-                                color: _isButtonHovered ? Colors.red[700] : Colors.red,
-                                shape: BoxShape.circle,
-                              ),
-                              padding: EdgeInsets.all(8), // Size of the button
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                AutoFadeOverflowText(
+                  text: widget.product['name'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                if (widget.product['country'] != '')
+                  Text(
+                    '${widget.product['country']}, ${widget.product['weight']}',
+                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                  )
+                else
+                  Text(
+                    widget.product['weight'],
+                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                  ),
+                SizedBox(height: 4),
+                Text(
+                  widget.product['price'],
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  widget.product['pricePerKg'],
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Spacer(),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: MouseRegion(
+                    onEnter: (_) => setState(() => _isButtonHovered = true),
+                    onExit: (_) => setState(() => _isButtonHovered = false),
+                    child: Material(
+                      color: Colors.transparent,
+                      shape: CircleBorder(),
+                      child: InkWell(
+                        onTap: () {
+                          Provider.of<CartProvider>(context, listen: false).addToCart(widget.product);
+                        },
+                        borderRadius: BorderRadius.circular(100),
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 200),
+                          decoration: BoxDecoration(
+                            color: _isButtonHovered ? Colors.red[700] : Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                );
-              },
+                  ),
+                ),
+              ],
             ),
           ),
         ),

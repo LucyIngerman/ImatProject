@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:i_mat_project/pages/account_page.dart';
+import 'package:i_mat_project/pages/checkout_page.dart';
+import 'package:i_mat_project/pages/login_page.dart';
 import 'package:i_mat_project/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +57,7 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
   void _toggleCartOverlay() {
   if (_cartOverlay == null) {
     _cartOverlay = _createOverlayEntry();
-    Overlay.of(context)!.insert(_cartOverlay!);
+    Overlay.of(context).insert(_cartOverlay!);
     _animationController.forward();
   } else {
     _animationController.reverse().then((_) {
@@ -159,9 +162,15 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+                        _toggleCartOverlay();
+
                         // Example: navigate to full cart page
                         // Navigator.pushNamed(context, '/cart');
-                        _toggleCartOverlay();
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CheckoutPage()),
+                        );
+
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -198,22 +207,23 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
 
   ButtonStyle _buttonStyle() {
     return ButtonStyle(
-      minimumSize: MaterialStateProperty.all(const Size(40, 40)),
-      backgroundColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (states.contains(MaterialState.hovered)) return hoverColor;
+      minimumSize: WidgetStateProperty.all(const Size(40, 40)),
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (states.contains(WidgetState.hovered)) return hoverColor;
         return baseColor;
       }),
-      foregroundColor: MaterialStateProperty.all(foregroundColor),
-      overlayColor: MaterialStateProperty.all(Colors.grey.withOpacity(0.2)),
-      shape: MaterialStateProperty.all(
+      foregroundColor: WidgetStateProperty.all(foregroundColor),
+      // ignore: deprecated_member_use
+      overlayColor: WidgetStateProperty.all(Colors.grey.withOpacity(0.2)),
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       ),
-      padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 12)),
-      mouseCursor: MaterialStateProperty.resolveWith<MouseCursor>((states) {
-        if (states.contains(MaterialState.disabled)) return SystemMouseCursors.basic;
+      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 12)),
+      mouseCursor: WidgetStateProperty.resolveWith<MouseCursor>((states) {
+        if (states.contains(WidgetState.disabled)) return SystemMouseCursors.basic;
         return SystemMouseCursors.click;
       }),
-      elevation: MaterialStateProperty.all(0),
+      elevation: WidgetStateProperty.all(0),
     );
   }
 
@@ -313,7 +323,24 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
             // Login/Profile Button
             TextButton(
               style: _buttonStyle(),
-              onPressed: widget.onLoginTap ?? () {},
+              onPressed: () {
+
+                if (widget.isLoggedIn) {
+                  // If logged in, show account page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AccountPage()),
+                  );
+                } else {
+                  // If not logged in, show login page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                }
+                
+
+              },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [

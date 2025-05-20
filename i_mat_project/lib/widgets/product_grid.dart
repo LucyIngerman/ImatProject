@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'product_card.dart'; // Your custom card
 
@@ -22,18 +23,19 @@ class ProductGrid extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: cardsPerRow,
           crossAxisSpacing: spacing,
-          mainAxisSpacing: spacing,
-          childAspectRatio: 0.53, // Adjust to suit your card height/width
+          mainAxisSpacing: spacing * 2, // Increased vertical gap
+          childAspectRatio: 0.6, // Adjusted to prevent cards from being too big
         ),
         itemBuilder: (context, index) {
           return ProductCard(
-  products[index],
-  onAddToCart: () {
-    // cart.add(products[index]); // Replace with your cart logic
-    print('Added ${products[index]['name']} to cart');
-  },
-)
-;
+            products[index],
+            onAddToCart: () {
+              // cart.add(products[index]); // Replace with your cart logic
+              if (kDebugMode) {
+                print('Added ${products[index]['name']} to cart');
+              }
+            },
+          );
         },
       ),
     );
