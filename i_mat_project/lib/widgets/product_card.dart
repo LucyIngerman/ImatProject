@@ -16,7 +16,7 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   bool _isHovered = false;
-
+  bool _isButtonHovered = false; // Add this
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -83,15 +83,31 @@ class _ProductCardState extends State<ProductCard> {
                     Spacer(),
                     Align(
                       alignment: Alignment.bottomRight,
-                      child: InkWell(
-                        onTap: () {
-                          Provider.of<CartProvider>(context, listen: false).addToCart(widget.product);
-                        },
-                        borderRadius: BorderRadius.circular(20),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.red,
-                          radius: 16,
-                          child: Icon(Icons.add, color: Colors.white, size: 20),
+                      child: MouseRegion(
+                        onEnter: (_) => setState(() => _isButtonHovered = true),
+                        onExit: (_) => setState(() => _isButtonHovered = false),
+                        child: Material(
+                          color: Colors.transparent,
+                          shape: CircleBorder(),
+                          child: InkWell(
+                            onTap: () {
+                              Provider.of<CartProvider>(context, listen: false).addToCart(widget.product);
+                            },
+                            borderRadius: BorderRadius.circular(100),
+                            child: AnimatedContainer(
+                              duration: Duration(milliseconds: 200),
+                              decoration: BoxDecoration(
+                                color: _isButtonHovered ? Colors.red[700] : Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                              padding: EdgeInsets.all(8), // Size of the button
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),

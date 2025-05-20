@@ -29,7 +29,7 @@ class ProductGrid extends StatelessWidget {
           return ProductCard(
   products[index],
   onAddToCart: () {
-    cart.add(products[index]); // Replace with your cart logic
+    // cart.add(products[index]); // Replace with your cart logic
     print('Added ${products[index]['name']} to cart');
   },
 )
