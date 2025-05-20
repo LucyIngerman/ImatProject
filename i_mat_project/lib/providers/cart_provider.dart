@@ -52,4 +52,10 @@ class CartProvider extends ChangeNotifier {
         sum + _parsePrice(item.product['price'].toString()) * item.quantity,
 
   );
+
+  void clear() {
+  _items.clear();
+  notifyListeners();
+}
+
 }
