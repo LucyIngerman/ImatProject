@@ -162,17 +162,25 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+                        
                         _toggleCartOverlay();
 
-                        // Example: navigate to full cart page
-                        // Navigator.pushNamed(context, '/cart');
-                         Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CheckoutPage()),
-                        );
+                        // Wait for the overlay animation to complete before navigating
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          Navigator.push(
+                            // ignore: use_build_context_synchronously
+                            context,
+                            MaterialPageRoute(builder: (context) => CheckoutPage()),
+                          );
+                        });
+                        //  Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => CheckoutPage()),
+                        // );
 
                       },
                       style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
                         backgroundColor: Colors.red,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

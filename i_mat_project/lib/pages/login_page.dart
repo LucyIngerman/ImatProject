@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       });
       // Navigate to the account page after successful login
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(builder: (context) => const AccountPage()),
       );
