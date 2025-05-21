@@ -17,6 +17,22 @@ class _ProductCardState extends State<ProductCard> {
   bool _isHovered = false;
   bool _isButtonHovered = false;
 
+  void _showInformationPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Product Information'),
+        content: Text(widget.product['description'] ?? 'No additional information available.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -77,35 +93,49 @@ class _ProductCardState extends State<ProductCard> {
                   style: TextStyle(color: Colors.grey),
                 ),
                 Spacer(),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: MouseRegion(
-                    onEnter: (_) => setState(() => _isButtonHovered = true),
-                    onExit: (_) => setState(() => _isButtonHovered = false),
-                    child: Material(
-                      color: Colors.transparent,
-                      shape: CircleBorder(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
                       child: InkWell(
-                        onTap: () {
-                          Provider.of<CartProvider>(context, listen: false).addToCart(widget.product);
-                        },
-                        borderRadius: BorderRadius.circular(100),
-                        child: AnimatedContainer(
-                          duration: Duration(milliseconds: 200),
-                          decoration: BoxDecoration(
-                            color: _isButtonHovered ? Colors.red[700] : Colors.red,
-                            shape: BoxShape.circle,
-                          ),
-                          padding: EdgeInsets.all(8),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 20,
+                      onTap: () => _showInformationPopup(context),
+                      borderRadius: BorderRadius.circular(100),
+                      child: Icon(
+                        Icons.info,
+                        color: Colors.blue,
+                        size: 44, // Increased size
+                      ),
+                      ),
+                    ),
+                    MouseRegion(
+                      onEnter: (_) => setState(() => _isButtonHovered = true),
+                      onExit: (_) => setState(() => _isButtonHovered = false),
+                      child: Material(
+                        color: Colors.transparent,
+                        shape: CircleBorder(),
+                        child: InkWell(
+                          onTap: () {
+                            Provider.of<CartProvider>(context, listen: false).addToCart(widget.product);
+                          },
+                          borderRadius: BorderRadius.circular(100),
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 200),
+                            decoration: BoxDecoration(
+                              color: _isButtonHovered ? Colors.red[700] : Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                            padding: EdgeInsets.all(8),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 20,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

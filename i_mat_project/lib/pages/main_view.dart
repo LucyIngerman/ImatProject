@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:i_mat_project/providers/cart_provider.dart';
 import 'package:i_mat_project/widgets/button_toggle_bar.dart';
+import 'package:i_mat_project/widgets/footer.dart';
 import 'package:i_mat_project/widgets/product_grid.dart';
 import 'package:i_mat_project/widgets/top_navigation_bar.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,7 @@ class _MainViewState extends State<MainView> {
             children: [
               TopNavigationBar(
                 key: topNavKey,
-                logoAssetPath: 'assets/logo.jpg',
+                logoAssetPath: 'assets/logo_2.png',
                 cartTotal: cart.totalPrice,
                 itemCount: cart.itemCount,
               ),
@@ -60,6 +61,7 @@ class _MainViewState extends State<MainView> {
                         cardsPerRow: 6,
                       ),
               ),
+              Footer(),
             ],
           ),
         ],

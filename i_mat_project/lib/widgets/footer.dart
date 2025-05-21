@@ -35,7 +35,7 @@ class Footer extends StatelessWidget {
 
   Widget _buildCopyright() {
     return const Text(
-      '© 2025 Your Company. All rights reserved.',
+      '© 2025 IMAT. All rights reserved.',
       style: TextStyle(color: Colors.white70),
     );
   }

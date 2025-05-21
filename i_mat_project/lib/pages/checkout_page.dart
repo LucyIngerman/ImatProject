@@ -7,11 +7,9 @@ import 'package:provider/provider.dart';
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     final GlobalKey topNavKey = GlobalKey();
-
 
     final cart = Provider.of<CartProvider>(context);
     return Scaffold(
@@ -19,42 +17,67 @@ class CheckoutPage extends StatelessWidget {
         children: [
           // Replace AppBar with your custom top_navigation_bar
           TopNavigationBar(
-                key: topNavKey,
-                logoAssetPath: 'assets/logo.jpg',
-                cartTotal: cart.totalPrice,
-                itemCount: cart.itemCount,
-              ),
-              ButtonToggleBar(),
+            key: topNavKey,
+            logoAssetPath: 'assets/logo_2.png',
+            cartTotal: cart.totalPrice,
+            itemCount: cart.itemCount,
+          ),
+          ButtonToggleBar(),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Ordersammanfattning',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 16),
-                  Expanded(
-                    child: ListView(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                'Ordersammanfattning',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 16),
+                Expanded(
+                child: ListView.builder(
+                  itemCount: cart.items.length,
+                  itemBuilder: (context, index) {
+                  final item = cart.items[index];
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
+                    decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                      // ignore: deprecated_member_use
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3),
+                      ),
+                    ],
+                    ),
+                    child: ListTile(
+                    title: Row(
                       children: [
-                        ListTile(
-                          title: Text('Artikel 1'),
-                          trailing: Text('10,00 kr'),
-                        ),
-                        ListTile(
-                          title: Text('Artikel 2'),
-                          trailing: Text('15,00 kr'),
-                        ),
-                        ListTile(
-                          title: Text('Artikel 3'),
-                          trailing: Text('20,00 kr'),
-                        ),
+                      Image.network(
+                        item.product["imageUrl"] as String,
+                        width: 50,
+                        height: 50,
+                        errorBuilder: (context, error, stackTrace) {
+                        return Icon(Icons.broken_image, size: 50);
+                        },
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Text(item.product["name"] as String),
+                      ),
                       ],
                     ),
-                  ),
-                  Divider(),
+                    trailing: Text('${item.product["price"]} kr'),
+                    ),
+                  );
+                  },
+                ),
+                ),
+                Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -63,7 +86,7 @@ class CheckoutPage extends StatelessWidget {
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '45,00 kr',
+                        '${cart.totalPrice.toStringAsFixed(2)} kr',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -94,5 +117,4 @@ class CheckoutPage extends StatelessWidget {
       ),
     );
   }
-
 }
