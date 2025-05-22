@@ -52,7 +52,7 @@ class _MainViewState extends State<MainView> {
                 cartTotal: cart.totalPrice,
                 itemCount: cart.itemCount,
               ),
-              ButtonToggleBar(),
+              ButtonToggleBar(selectedLabel: "Kategorier",),
               Expanded(
                 child: products.isEmpty
                     ? const Center(child: CircularProgressIndicator())

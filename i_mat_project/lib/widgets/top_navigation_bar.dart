@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:i_mat_project/pages/account_page.dart';
 import 'package:i_mat_project/pages/checkout_page.dart';
 import 'package:i_mat_project/pages/login_page.dart';
+import 'package:i_mat_project/pages/main_view.dart';
 import 'package:i_mat_project/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -247,14 +248,19 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                onTap: widget.onLogoTap ?? () {},
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Image.asset(
-                    widget.logoAssetPath,
-                    height: 40,
-                  ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainView()),
+                  );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Image.asset(
+                widget.logoAssetPath,
+                height: 40,
                 ),
+              ),
               ),
             ),
 

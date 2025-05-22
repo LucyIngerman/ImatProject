@@ -22,62 +22,62 @@ class CheckoutPage extends StatelessWidget {
             cartTotal: cart.totalPrice,
             itemCount: cart.itemCount,
           ),
-          ButtonToggleBar(),
+          ButtonToggleBar(selectedLabel: "",),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 16.0),
               child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                'Ordersammanfattning',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 16),
-                Expanded(
-                child: ListView.builder(
-                  itemCount: cart.items.length,
-                  itemBuilder: (context, index) {
-                  final item = cart.items[index];
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                    boxShadow: [
-                      BoxShadow(
-                      // ignore: deprecated_member_use
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3),
-                      ),
-                    ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Ordersammanfattning',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 16),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: cart.items.length,
+                      itemBuilder: (context, index) {
+                        final item = cart.items[index];
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 8.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                // ignore: deprecated_member_use
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: ListTile(
+                            title: Row(
+                              children: [
+                                Image.network(
+                                  item.product["imageUrl"] as String,
+                                  width: 50,
+                                  height: 50,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Icon(Icons.broken_image, size: 50);
+                                  },
+                                ),
+                                SizedBox(width: 16),
+                                Expanded(
+                                  child: Text(item.product["name"] as String),
+                                ),
+                              ],
+                            ),
+                            trailing: Text('${item.product["price"]} kr'),
+                          ),
+                        );
+                      },
                     ),
-                    child: ListTile(
-                    title: Row(
-                      children: [
-                      Image.network(
-                        item.product["imageUrl"] as String,
-                        width: 50,
-                        height: 50,
-                        errorBuilder: (context, error, stackTrace) {
-                        return Icon(Icons.broken_image, size: 50);
-                        },
-                      ),
-                      SizedBox(width: 16),
-                      Expanded(
-                        child: Text(item.product["name"] as String),
-                      ),
-                      ],
-                    ),
-                    trailing: Text('${item.product["price"]} kr'),
-                    ),
-                  );
-                  },
-                ),
-                ),
-                Divider(),
+                  ),
+                  Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

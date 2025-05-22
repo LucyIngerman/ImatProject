@@ -1,35 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:i_mat_project/pages/help_page.dart';
+import 'package:i_mat_project/pages/main_view.dart';
+import 'package:i_mat_project/pages/offers_page.dart';
 
-class ButtonToggleBar extends StatefulWidget {
-  const ButtonToggleBar({super.key});
+class ButtonToggleBar extends StatelessWidget {
+  final String selectedLabel;
+  const ButtonToggleBar({super.key, required this.selectedLabel});
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _ButtonToggleBarState createState() => _ButtonToggleBarState();
-}
+  static const List<String> buttonLabels = ['Kategorier', 'Erbjudanden', 'Hjälp'];
 
-class _ButtonToggleBarState extends State<ButtonToggleBar> {
-  int selectedIndex = 0;
+  void _onButtonPressed(BuildContext context, String label) {
+    if (label == selectedLabel) return; // No navigation if already selected
 
-  final List<String> buttonLabels = ['Kategori', 'Erbjudanden', 'Hjälp?'];
+    late final Widget page;
+    if (label == 'Kategorier') {
+      page = MainView();
+    } else if (label == 'Erbjudanden') {
+      page = OffersPage();
+    } else if (label == 'Hjälp') {
+      page = HelpPage();
+    } else {
+      // Fallback to MainView if label is unexpected
+      page = MainView();
+    }
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200], // Distinct background color for the bar
+      color: Colors.grey[200],
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: List.generate(buttonLabels.length, (index) {
-          final bool isSelected = index == selectedIndex;
+        children: buttonLabels.map((label) {
+          final bool isSelected = label == selectedLabel;
           return Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: TextButton(
-              onPressed: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
+              onPressed: () => _onButtonPressed(context, label),
               style: TextButton.styleFrom(
                 backgroundColor: isSelected ? Colors.grey[800] : Colors.grey[300],
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -38,7 +51,7 @@ class _ButtonToggleBarState extends State<ButtonToggleBar> {
                 ),
               ),
               child: Text(
-                buttonLabels[index],
+                label,
                 style: TextStyle(
                   color: isSelected ? Colors.white : Colors.black87,
                   fontSize: 16,
@@ -46,7 +59,7 @@ class _ButtonToggleBarState extends State<ButtonToggleBar> {
               ),
             ),
           );
-        }),
+        }).toList(),
       ),
     );
   }
