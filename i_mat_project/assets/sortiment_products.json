@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "name": "Gröna ärter",
+    "price": "19,50 kr",
+    "pricePerKg": "19,50 kr/kg",
+    "category": "Baljväxter",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "id": 2,
+    "name": "Kikärtor",
+    "price": "24 kr",
+    "pricePerKg": "24,00 kr/kg",
+    "category": "Baljväxter",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "id": 3,
+    "name": "Linser bruna",
+    "price": "18 kr",
+    "pricePerKg": "",
+    "category": "Baljväxter",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "id": 4,
+    "name": "Linser gröna",
+    "price": "12 kr",
+    "pricePerKg": "",
+    "category": "Baljväxter",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "id": 5,
+    "name": "Linser röda",
+    "price": "15 kr",
+    "pricePerKg": "",
+    "category": "Baljväxter",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "id": 6,
+    "name": "Röda bönor",
+    "price": "20 kr",
+    "pricePerKg": "",
+    "category": "Baljväxter",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "id": 7,
+    "name": "Vita bönor",
+    "price": "24 kr",
+    "pricePerKg": "",
+    "category": "Baljväxter",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Bröd grovt",
+    "price": "29 kr",
+    "category": "Bröd",
+    "id": 8,
+    "pricePerKg": "",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Bröd vitt",
+    "price": "28 kr",
+    "category": "Bröd",
+    "id": 9,
+    "pricePerKg": "",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Fralla",
+    "price": "20 kr",
+    "category": "Bröd",
+    "id": 10,
+    "pricePerKg": "",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Knäckebröd",
+    "price": "24 kr",
+    "category": "Bröd",
+    "id": 11,
+    "pricePerKg": "",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Toast",
+    "price": "18 kr",
+    "category": "Bröd",
+    "id": 12,
+    "pricePerKg": "",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Tunnbröd",
+    "price": "20 kr",
+    "category": "Bröd",
+    "id": 13,
+    "pricePerKg": "",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Vörtlimpa",
+    "price": "23 kr",
+    "category": "Bröd",
+    "id": 14,
+    "pricePerKg": "",
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Björnbär",
+    "price": "49 kr",
+    "pricePerKg": "49 kr/kg",
+    "category": "Bär",
+    "id": 15,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Blåbär",
+    "price": "52 kr",
+    "pricePerKg": "52 kr/kg",
+    "category": "Bär",
+    "id": 16,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Hallon",
+    "price": "75 kr",
+    "pricePerKg": "75 kr/kg",
+    "category": "Bär",
+    "id": 17,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Krusbär",
+    "price": "64 kr",
+    "pricePerKg": "64 kr/kg",
+    "category": "Bär",
+    "id": 18,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Röda vinbär",
+    "price": "40 kr",
+    "pricePerKg": "40 kr/kg",
+    "category": "Bär",
+    "id": 19,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Smultron",
+    "price": "69 kr",
+    "pricePerKg": "69 kr/kg",
+    "category": "Bär",
+    "id": 20,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Svarta vinbär",
+    "price": "45 kr",
+    "pricePerKg": "45 kr/kg",
+    "category": "Bär",
+    "id": 21,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Apelsin",
+    "price": "10 kr",
+    "pricePerKg": "10 kr/kg",
+    "category": "Citrosfrukter",
+    "id": 22,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Citron",
+    "price": "49 kr",
+    "pricePerKg": "49 kr/kg",
+    "category": "Citrosfrukter",
+    "id": 23,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Clementin",
+    "price": "25 kr",
+    "pricePerKg": "25 kr/kg",
+    "category": "Citrosfrukter",
+    "id": 24,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Grapefruit",
+    "price": "9 kr",
+    "pricePerKg": "9 kr/kg",
+    "category": "Citrosfrukter",
+    "id": 25,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Lime",
+    "price": "45 kr",
+    "pricePerKg": "45 kr/kg",
+    "category": "Citrosfrukter",
+    "id": 26,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Apelsinjuice",
+    "price": "14 kr",
+    "pricePerKg": "",
+    "category": "Drycker kalla",
+    "id": 27,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Cola burk",
+    "price": "10 kr",
+    "pricePerKg": "",
+    "category": "Drycker kalla",
+    "id": 28,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Cola flaska",
+    "price": "18.50 kr",
+    "pricePerKg": "",
+    "category": "Drycker kalla",
+    "id": 29,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Fanta burk",
+    "price": "10 kr",
+    "pricePerKg": "",
+    "category": "Drycker kalla",
+    "id": 30,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Fanta flaska",
+    "price": "17 kr",
+    "pricePerKg": "",
+    "category": "Drycker kalla",
+    "id": 31,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Fruktsoppa",
+    "price": "10.95 kr",
+    "pricePerKg": "10.95 kr/l",
+    "category": "Drycker kalla",
+    "id": 32,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "7Up burk",
+    "price": "10 kr",
+    "pricePerKg": "",
+    "category": "Drycker kalla",
+    "id": 33,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "7Up flaska",
+    "price": "12.50 kr",
+    "pricePerKg": "12.50 kr/l",
+    "category": "Drycker kalla",
+    "id": 34,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  },
+  {
+    "name": "Vatten",
+    "price": "12.50 kr",
+    "pricePerKg": "12.50 kr/l",
+    "category": "Drycker kalla",
+    "id": 35,
+    "country": "",
+    "weight": "",
+    "imageUrl": "https://img.icons8.com/plasticine/100/vegetarian-food.png"
+  }
+]
