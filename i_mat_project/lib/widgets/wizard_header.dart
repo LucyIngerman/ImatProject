@@ -13,19 +13,19 @@ class WizardHeaderActiveStep extends StatelessWidget {
         StepIndicator(
           label: "1",
           title: "Kontakt",
-          isActive: currentStep == CheckoutStep.kontakt,
+          isActive: currentStep.index >= CheckoutStep.kontakt.index,
         ),
-        ConnectorLine(isActive: currentStep.index > 0),
+        ConnectorLine(isActive: currentStep.index > CheckoutStep.kontakt.index),
         StepIndicator(
           label: "2",
           title: "Leverans",
-          isActive: currentStep == CheckoutStep.leverans,
+          isActive: currentStep.index >= CheckoutStep.leverans.index,
         ),
-        ConnectorLine(isActive: currentStep.index > 1),
+        ConnectorLine(isActive: currentStep.index > CheckoutStep.leverans.index),
         StepIndicator(
           label: "3",
           title: "Betalning",
-          isActive: currentStep == CheckoutStep.betalning,
+          isActive: currentStep.index >= CheckoutStep.betalning.index,
         ),
       ],
     );
@@ -41,8 +41,7 @@ class StepIndicator extends StatelessWidget {
     required this.label,
     required this.title,
     required this.isActive,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +50,10 @@ class StepIndicator extends StatelessWidget {
         CircleAvatar(
           radius: 14,
           backgroundColor: isActive ? Colors.blue : Colors.grey,
-          child: Text(label, style: const TextStyle(color: Colors.white)),
+          child: Text(label, style: TextStyle(color: Colors.white)),
         ),
-        const SizedBox(height: 4),
-        Text(title, style: const TextStyle(fontSize: 12)),
+        SizedBox(height: 4),
+        Text(title, style: TextStyle(fontSize: 12)),
       ],
     );
   }
@@ -63,7 +62,7 @@ class StepIndicator extends StatelessWidget {
 class ConnectorLine extends StatelessWidget {
   final bool isActive;
 
-  const ConnectorLine({this.isActive = false, Key? key}) : super(key: key);
+  const ConnectorLine({this.isActive = false});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +70,7 @@ class ConnectorLine extends StatelessWidget {
       child: Container(
         height: 2,
         color: isActive ? Colors.blue : Colors.grey[400],
-        margin: const EdgeInsets.symmetric(horizontal: 4),
+        margin: EdgeInsets.symmetric(horizontal: 4),
       ),
     );
   }

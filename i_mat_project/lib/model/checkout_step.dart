@@ -1,1 +1,6 @@
-enum CheckoutStep { kontakt, leverans, betalning }
+enum CheckoutStep {
+  kontakt,
+  leverans,
+  meddelande,
+  betalning,
+}

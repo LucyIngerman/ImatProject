@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:i_mat_project/model/checkout_step.dart'; 
 import 'package:i_mat_project/widgets/kontakt_information_form.dart';
 import 'package:i_mat_project/widgets/leverans_information_form.dart';
 import 'package:i_mat_project/widgets/wizard_header.dart';
+import 'package:i_mat_project/model/checkout_step.dart';
+
+
 
 class CheckoutPage2 extends StatefulWidget {
   @override
@@ -12,14 +14,19 @@ class CheckoutPage2 extends StatefulWidget {
 class _CheckoutPage2State extends State<CheckoutPage2> {
   CheckoutStep currentStep = CheckoutStep.kontakt;
 
-  // Controllers as before
+  // Step 1 controllers
   final _emailController = TextEditingController();
   final _nameController = TextEditingController();
   final _phoneController = TextEditingController();
 
+  // Step 2 controllers
   final _postnummerController = TextEditingController();
   final _adressController = TextEditingController();
   final _lagenhetsnummerController = TextEditingController();
+
+  // Step 3 controller
+  final _messageController = TextEditingController();
+  bool _wantsToSendMessage = false;
 
   @override
   void dispose() {
@@ -29,6 +36,7 @@ class _CheckoutPage2State extends State<CheckoutPage2> {
     _postnummerController.dispose();
     _adressController.dispose();
     _lagenhetsnummerController.dispose();
+    _messageController.dispose();
     super.dispose();
   }
 
@@ -36,10 +44,87 @@ class _CheckoutPage2State extends State<CheckoutPage2> {
     setState(() {
       if (currentStep == CheckoutStep.kontakt) {
         currentStep = CheckoutStep.leverans;
-      } else {
-        // Add next steps or finish logic here
+      } else if (currentStep == CheckoutStep.leverans) {
+        currentStep = CheckoutStep.meddelande;
+      } else if (currentStep == CheckoutStep.meddelande) {
+        currentStep = CheckoutStep.betalning;
       }
     });
+  }
+
+  void _goToPreviousStep() {
+    setState(() {
+      if (currentStep == CheckoutStep.meddelande) {
+        currentStep = CheckoutStep.leverans;
+        _wantsToSendMessage = false;
+        _messageController.clear();
+      }
+    });
+  }
+
+  Widget _buildMessageStep() {
+    if (!_wantsToSendMessage) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Vill du skicka ett meddelande till leverantören?",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          SizedBox(height: 16),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _wantsToSendMessage = true;
+                  });
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                child: Text("Ja", style: TextStyle(color: Colors.white)),
+              ),
+              SizedBox(width: 12),
+              ElevatedButton(
+                onPressed: _goToNextStep,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                child: Text("Nej", style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
+        ],
+      );
+    } else {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Vad vill du meddela?",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          SizedBox(height: 16),
+          TextField(
+            controller: _messageController,
+            maxLines: 4,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: "Skriv ditt meddelande här...",
+            ),
+          ),
+          SizedBox(height: 24),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: _goToPreviousStep,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+                child: Text("Gå tillbaka", style: TextStyle(color: Colors.white)),
+              ),
+              SizedBox(width: 12),
+              ElevatedButton(
+                onPressed: _goToNextStep,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                child: Text("Skicka", style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
   }
 
   @override
@@ -50,6 +135,7 @@ class _CheckoutPage2State extends State<CheckoutPage2> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Logo
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8),
               child: SizedBox(
@@ -67,8 +153,7 @@ class _CheckoutPage2State extends State<CheckoutPage2> {
                     color: Colors.grey[100],
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
-                      BoxShadow(
-                          color: Colors.black12, blurRadius: 8, spreadRadius: 2),
+                      BoxShadow(color: Colors.black12, blurRadius: 8, spreadRadius: 2),
                     ],
                   ),
                   child: Column(
@@ -88,10 +173,12 @@ class _CheckoutPage2State extends State<CheckoutPage2> {
                           postnummerController: _postnummerController,
                           adressController: _adressController,
                           lagenhetsnummerController: _lagenhetsnummerController,
-                          onNextPressed: () {
-                            // Next step or finish logic here
-                          },
+                          onNextPressed: _goToNextStep,
                         ),
+                      if (currentStep == CheckoutStep.meddelande)
+                        _buildMessageStep(),
+                      if (currentStep == CheckoutStep.betalning)
+                        Text("Betalningssteg kommer här."),
                     ],
                   ),
                 ),
