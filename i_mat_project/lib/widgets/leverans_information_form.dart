@@ -42,7 +42,7 @@ class LeveransInformationForm extends StatelessWidget {
           ),
           child: Text(
             'Nästa',
-            style: TextStyle(fontSize: 16, color: Colors.white),
+            style: TextStyle(fontSize: 16, color: const Color.fromARGB(255, 34, 30, 30)),
           ),
         ),
       ],
