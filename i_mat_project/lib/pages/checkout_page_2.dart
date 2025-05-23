@@ -9,9 +9,23 @@ class CheckoutPage2 extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start, // ← Align children left
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8),
+        child: SizedBox(
+          width: 120,
+          height: 70,
+          child: Placeholder(),
+        ),
+      ),
+
+      Expanded(
+        child: Center(
           child: Container(
+            constraints: BoxConstraints(maxWidth: 800),
+            padding: const EdgeInsets.all(24.0),
             decoration: BoxDecoration(
               color: Colors.grey[100],
               borderRadius: BorderRadius.circular(12),
@@ -19,32 +33,20 @@ class CheckoutPage2 extends StatelessWidget {
                 BoxShadow(color: Colors.black12, blurRadius: 8, spreadRadius: 2),
               ],
             ),
-            child: Stack(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Positioned(
-                  top: 16,
-                  right: 16,
-                  child: Placeholder(
-                    fallbackHeight: 50,
-                    fallbackWidth: 50,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      WizardHeader(),
-                      SizedBox(height: 24),
-                      KontaktInformationForm(),
-                    ],
-                  ),
-                ),
+                WizardHeader(),
+                SizedBox(height: 24),
+                KontaktInformationForm(),
               ],
             ),
           ),
         ),
       ),
+    ],
+  ),
+),
     );
   }
 }

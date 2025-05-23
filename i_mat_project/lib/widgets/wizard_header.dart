@@ -5,10 +5,10 @@ class WizardHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        StepIndicator(label: "1", title: "Kontakt information", isActive: true),
-        Spacer(),
+        StepIndicator(label: "1", title: "Kontakt", isActive: true),
+        ConnectorLine(),
         StepIndicator(label: "2", title: "Leverans", isActive: false),
-        Spacer(),
+        ConnectorLine(),
         StepIndicator(label: "3", title: "Betalning", isActive: false),
       ],
     );
@@ -38,6 +38,19 @@ class StepIndicator extends StatelessWidget {
         SizedBox(height: 4),
         Text(title, style: TextStyle(fontSize: 12)),
       ],
+    );
+  }
+}
+
+class ConnectorLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 2,
+        color: Colors.grey[400],
+        margin: EdgeInsets.symmetric(horizontal: 4),
+      ),
     );
   }
 }
