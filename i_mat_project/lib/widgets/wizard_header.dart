@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:i_mat_project/model/checkout_step.dart';
 
-class WizardHeader extends StatelessWidget {
-  const WizardHeader({super.key});
+class WizardHeaderActiveStep extends StatelessWidget {
+  final CheckoutStep currentStep;
+
+  const WizardHeaderActiveStep({required this.currentStep, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        StepIndicator(label: "1", title: "Kontakt", isActive: true),
-        ConnectorLine(),
-        StepIndicator(label: "2", title: "Leverans", isActive: false),
-        ConnectorLine(),
-        StepIndicator(label: "3", title: "Betalning", isActive: false),
+        StepIndicator(
+          label: "1",
+          title: "Kontakt",
+          isActive: currentStep.index >= CheckoutStep.kontakt.index,
+        ),
+        ConnectorLine(isActive: currentStep.index > CheckoutStep.kontakt.index),
+        StepIndicator(
+          label: "2",
+          title: "Leverans",
+          isActive: currentStep.index >= CheckoutStep.leverans.index,
+        ),
+        ConnectorLine(isActive: currentStep.index > CheckoutStep.leverans.index),
+        StepIndicator(
+          label: "3",
+          title: "Betalning",
+          isActive: currentStep.index >= CheckoutStep.betalning.index,
+        ),
       ],
     );
   }
@@ -45,14 +60,16 @@ class StepIndicator extends StatelessWidget {
 }
 
 class ConnectorLine extends StatelessWidget {
-  const ConnectorLine({super.key});
+  final bool isActive;
+
+  const ConnectorLine({this.isActive = false});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         height: 2,
-        color: Colors.grey[400],
+        color: isActive ? Colors.blue : Colors.grey[400],
         margin: EdgeInsets.symmetric(horizontal: 4),
       ),
     );
