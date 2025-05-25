@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:i_mat_project/pages/account_page.dart';
+import 'package:i_mat_project/providers/cart_provider.dart';
+import 'package:i_mat_project/widgets/button_toggle_bar.dart';
+import 'package:i_mat_project/widgets/footer.dart';
+import 'package:i_mat_project/widgets/log_in_box.dart';
+import 'package:i_mat_project/widgets/top_navigation_bar.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -35,67 +41,26 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey topNavKey = GlobalKey();
+
+    final cart = Provider.of<CartProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  controller: _emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return 'Enter a valid email';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
-                  ),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 24),
-                _isLoading
-                    ? const CircularProgressIndicator()
-                    : SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: _login,
-                          child: const Text('Login'),
-                        ),
-                      ),
-              ],
+      body: Column(
+        children: [
+          TopNavigationBar(
+            key: topNavKey,
+            logoAssetPath: 'assets/logo_2.png',
+            cartTotal: cart.totalPrice,
+            itemCount: cart.itemCount,
+          ),
+          ButtonToggleBar(selectedLabel:""),
+          Expanded(
+            child: Center(
+              child: LogInBox(),
             ),
           ),
-        ),
+          Footer(),
+        ],
       ),
     );
   }

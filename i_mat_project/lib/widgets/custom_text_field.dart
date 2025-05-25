@@ -4,7 +4,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
 
-  const CustomTextField({
+  const CustomTextField({super.key, 
     required this.controller,
     required this.label,
   });

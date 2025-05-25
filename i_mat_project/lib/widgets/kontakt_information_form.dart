@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'custom_text_field.dart';
 
 class KontaktInformationForm extends StatefulWidget {
+  const KontaktInformationForm({super.key});
+
   @override
   _KontaktInformationFormState createState() => _KontaktInformationFormState();
 }

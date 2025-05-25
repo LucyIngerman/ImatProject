@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_mat_project/pages/checkout_page_2.dart';
 import 'package:i_mat_project/providers/cart_provider.dart';
 import 'package:i_mat_project/widgets/button_toggle_bar.dart';
 import 'package:i_mat_project/widgets/top_navigation_bar.dart';
@@ -92,11 +93,11 @@ class CheckoutPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16),
-                  ElevatedButton(
+                    ElevatedButton(
                     onPressed: () {
-                      // Hantera kassalogik
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Beställning genomförd!')),
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => CheckoutPage2()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

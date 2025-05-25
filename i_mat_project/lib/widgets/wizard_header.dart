@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class WizardHeader extends StatelessWidget {
+  const WizardHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +22,7 @@ class StepIndicator extends StatelessWidget {
   final String title;
   final bool isActive;
 
-  const StepIndicator({
+  const StepIndicator({super.key, 
     required this.label,
     required this.title,
     required this.isActive,
@@ -43,6 +45,8 @@ class StepIndicator extends StatelessWidget {
 }
 
 class ConnectorLine extends StatelessWidget {
+  const ConnectorLine({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
