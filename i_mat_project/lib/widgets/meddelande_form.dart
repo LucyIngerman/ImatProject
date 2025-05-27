@@ -5,13 +5,14 @@ class MeddelandeForm extends StatefulWidget {
   final ValueChanged<String> onSubmit;
   final VoidCallback onBack;
 
-  const MeddelandeForm({
+  const MeddelandeForm({super.key, 
     required this.onSkip,
     required this.onSubmit,
     required this.onBack,
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _MeddelandeFormState createState() => _MeddelandeFormState();
 }
 

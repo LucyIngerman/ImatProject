@@ -7,7 +7,7 @@ class LeveransInformationForm extends StatelessWidget {
   final TextEditingController lagenhetsnummerController;
   final VoidCallback onNextPressed;
 
-  const LeveransInformationForm({
+  const LeveransInformationForm({super.key, 
     required this.postnummerController,
     required this.adressController,
     required this.lagenhetsnummerController,

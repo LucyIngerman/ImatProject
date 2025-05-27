@@ -4,7 +4,7 @@ import 'package:i_mat_project/model/checkout_step.dart';
 class WizardHeaderActiveStep extends StatelessWidget {
   final CheckoutStep currentStep;
 
-  const WizardHeaderActiveStep({required this.currentStep, Key? key}) : super(key: key);
+  const WizardHeaderActiveStep({required this.currentStep, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class StepIndicator extends StatelessWidget {
 class ConnectorLine extends StatelessWidget {
   final bool isActive;
 
-  const ConnectorLine({this.isActive = false});
+  const ConnectorLine({super.key, this.isActive = false});
 
   @override
   Widget build(BuildContext context) {

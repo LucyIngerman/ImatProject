@@ -7,7 +7,7 @@ class KontaktInformationForm extends StatelessWidget {
   final TextEditingController phoneController;
   final VoidCallback onNextPressed;
 
-  const KontaktInformationForm({
+  const KontaktInformationForm({super.key, 
     required this.emailController,
     required this.nameController,
     required this.phoneController,

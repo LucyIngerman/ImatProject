@@ -97,100 +97,98 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
               child: Column(
                 children: [
                   AppBar(
-                    automaticallyImplyLeading: false,
-                    title: const Text('Din Kundvagn'),
-                    actions: [
-                      IconButton(
-                        icon: const Icon(Icons.delete_outline),
-                        tooltip: 'Ta bort alla artiklar',
-                        onPressed: () {
-                          final cart = Provider.of<CartProvider>(context, listen: false);
-                          cart.clear();
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: _toggleCartOverlay,
-                      ),
-                    ],
+                  automaticallyImplyLeading: false,
+                  title: const Text('Din Kundvagn'),
+                  actions: [
+                    IconButton(
+                    icon: const Icon(Icons.delete_outline),
+                    tooltip: 'Ta bort alla artiklar',
+                    onPressed: () {
+                      final cart = Provider.of<CartProvider>(context, listen: false);
+                      cart.clear();
+                    },
+                    ),
+                    IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: _toggleCartOverlay,
+                    ),
+                  ],
                   ),
                   Expanded(
-                    child: Consumer<CartProvider>(
-                      builder: (context, cart, _) {
-                        if (cart.items.isEmpty) {
-                          return const Center(child: Text('Din varukorg är tom.'));
-                        }
-                        return ListView.builder(
-                          padding: const EdgeInsets.all(8),
-                          itemCount: cart.items.length,
-                          itemBuilder: (context, index) {
-                            final item = cart.items[index];
-                            final prod = item.product;
-                            final priceStr = prod['price']
-                                .toString()
-                                .replaceAll(' kr', '')
-                                .replaceAll(',', '.');
-                            final price = double.tryParse(priceStr) ?? 0;
-                            final total = (price * item.quantity)
-                                .toStringAsFixed(2)
-                                .replaceAll('.', ',');
-                            return ListTile(
-                              leading: Image.network(
-                                prod['imageUrl'],
-                                width: 40,
-                                height: 40,
-                                fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => const Icon(Icons.image),
-                              ),
-                              title: Text(prod['name'] ?? ''),
-                              subtitle: Text(
-                                '${item.quantity} × ${price.toStringAsFixed(2).replaceAll('.', ',')} kr',
-                              ),
-                              trailing: Text(
-                                '$total kr',
-                                style: const TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            );
-                          },
-                        );
+                  child: Consumer<CartProvider>(
+                    builder: (context, cart, _) {
+                    if (cart.items.isEmpty) {
+                      return const Center(child: Text('Din varukorg är tom.'));
+                    }
+                    return ListView.builder(
+                      padding: const EdgeInsets.all(8),
+                      itemCount: cart.items.length,
+                      itemBuilder: (context, index) {
+                      final item = cart.items[index];
+                      final prod = item.product;
+                      final priceStr = prod['price']
+                        .toString()
+                        .replaceAll(' kr', '')
+                        .replaceAll(',', '.');
+                      final price = double.tryParse(priceStr) ?? 0;
+                      final total = (price * item.quantity)
+                        .toStringAsFixed(2)
+                        .replaceAll('.', ',');
+                      return ListTile(
+                        leading: Image.network(
+                        prod['imageUrl'],
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Icon(Icons.image),
+                        ),
+                        title: Text(prod['name'] ?? ''),
+                        subtitle: Text(
+                        '${item.quantity} × ${price.toStringAsFixed(2).replaceAll('.', ',')} kr',
+                        ),
+                        trailing: Text(
+                        '$total kr',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      );
                       },
-                    ),
+                    );
+                    },
+                  ),
                   ),
 
-                  // Red button at bottom
-                  Container(
+                  // Red button at bottom (only show if cart is not empty)
+                  Consumer<CartProvider>(
+                  builder: (context, cart, _) {
+                    if (cart.items.isEmpty) return const SizedBox.shrink();
+                    return Container(
                     padding: const EdgeInsets.all(16),
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        
-                        _toggleCartOverlay();
-
-                        // Wait for the overlay animation to complete before navigating
-                        Future.delayed(const Duration(milliseconds: 300), () {
-                          Navigator.push(
-                            // ignore: use_build_context_synchronously
-                            context,
-                            MaterialPageRoute(builder: (context) => CheckoutPage()),
-                          );
-                        });
-                        //  Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => CheckoutPage()),
-                        // );
-
+                      _toggleCartOverlay();
+                      // Wait for the overlay animation to complete before navigating
+                      Future.delayed(const Duration(milliseconds: 300), () {
+                        Navigator.push(
+                        // ignore: use_build_context_synchronously
+                        context,
+                        MaterialPageRoute(builder: (context) => CheckoutPage()),
+                        );
+                      });
                       },
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.red,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
                       child: const Text(
-                        'Fortsätt till varukorgen',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      'Fortsätt till varukorgen',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
+                    );
+                  },
                   ),
                 ],
               ),

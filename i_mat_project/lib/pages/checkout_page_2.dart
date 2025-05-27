@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:i_mat_project/providers/cart_provider.dart';
 import 'package:i_mat_project/widgets/button_toggle_bar.dart';
-import 'package:i_mat_project/widgets/footer.dart';
 import 'package:i_mat_project/widgets/kontakt_information_form.dart';
 import 'package:i_mat_project/widgets/leverans_information_form.dart';
+import 'package:i_mat_project/widgets/top_navigation_bar.dart';
 import 'package:i_mat_project/widgets/wizard_header.dart';
 import 'package:i_mat_project/model/checkout_step.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +11,10 @@ import 'package:provider/provider.dart';
 
 
 class CheckoutPage2 extends StatefulWidget {
+  const CheckoutPage2({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _CheckoutPage2State createState() => _CheckoutPage2State();
 }
 
@@ -142,6 +145,21 @@ class _CheckoutPage2State extends State<CheckoutPage2> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // TopNavigationBar
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: TopNavigationBar(
+                key: topNavKey,
+                logoAssetPath: 'assets/logo_2.png',
+                cartTotal: cart.totalPrice,
+                itemCount: cart.itemCount,
+              ),
+            ),
+            // ButtonToggleBar
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: ButtonToggleBar(selectedLabel: '',),
+            ),
             // Logo
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8),
