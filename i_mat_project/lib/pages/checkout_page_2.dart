@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_mat_project/providers/cart_provider.dart';
+import 'package:i_mat_project/widgets/betalning_form.dart';
 import 'package:i_mat_project/widgets/button_toggle_bar.dart';
 import 'package:i_mat_project/widgets/footer.dart';
 import 'package:i_mat_project/widgets/kontakt_information_form.dart';
@@ -185,7 +186,11 @@ class _CheckoutPage2State extends State<CheckoutPage2> {
                       if (currentStep == CheckoutStep.meddelande)
                         _buildMessageStep(),
                       if (currentStep == CheckoutStep.betalning)
-                        Text("Betalningssteg kommer här."),
+                      BetalningForm(
+                        onNextPressed: () {
+                          // Go to summary or submit order
+                        },
+                      ),
                     ],
                   ),
                 ),

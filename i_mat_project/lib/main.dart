@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_mat_project/pages/checkout_page_2.dart';
+import 'package:i_mat_project/pages/main_view.dart';
 import 'package:provider/provider.dart';
 import 'providers/cart_provider.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: CheckoutPage2(),
+      home: MainView(),
       debugShowCheckedModeBanner: false,
     );
   }
