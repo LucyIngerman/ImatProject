@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:i_mat_project/pages/account_page.dart';
+import 'package:i_mat_project/pages/category_page.dart';
 import 'package:i_mat_project/pages/checkout_page.dart';
 import 'package:i_mat_project/pages/login_page.dart';
-import 'package:i_mat_project/pages/main_view.dart';
 import 'package:i_mat_project/providers/cart_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -249,7 +249,7 @@ class _TopNavigationBarState extends State<TopNavigationBar> with SingleTickerPr
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MainView()),
+                    MaterialPageRoute(builder: (context) => CategoryPage()),
                   );
               },
               child: Padding(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:i_mat_project/pages/category_page.dart';
 import 'package:i_mat_project/pages/help_page.dart';
-import 'package:i_mat_project/pages/main_view.dart';
 import 'package:i_mat_project/pages/offers_page.dart';
 
 class ButtonToggleBar extends StatelessWidget {
@@ -14,14 +14,13 @@ class ButtonToggleBar extends StatelessWidget {
 
     late final Widget page;
     if (label == 'Kategorier') {
-      page = MainView();
+      page = CategoryPage();
     } else if (label == 'Erbjudanden') {
       page = OffersPage();
     } else if (label == 'Hjälp') {
       page = HelpPage();
     } else {
-      // Fallback to MainView if label is unexpected
-      page = MainView();
+      page = CategoryPage();
     }
 
     Navigator.pushReplacement(
